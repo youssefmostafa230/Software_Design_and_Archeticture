@@ -9,35 +9,56 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Player 
 {
-	public String First_Name;
-	public String Last_Name;
-	public String Nationality;
-	public String Position;
-	public String Club;
-	public float price;
+	String First_Name;
+	String Last_Name;
+	String Nationality;
+	String Position;
+	String Club;
+	String price;
 	
-	public void Add_new_player(String First_Name, String Last_Name, String Nationality, String Position, String Club, float price) throws IOException
+	public void Add_new_player(String First_Name, String Last_Name, String Nationality, String Position, String Club, String Price) throws IOException
 	{
-		
-		FileWriter fw= new FileWriter("Players_information.txt", true);
-		BufferedWriter Bw= new BufferedWriter(fw);
-		Bw.write(First_Name);
-		Bw.write(" ");
-		Bw.write(Last_Name);
-		Bw.write(" ");
-		Bw.write(Nationality);
-		Bw.write(" ");
-		Bw.write(Position);
-		Bw.write(" ");
-		Bw.write(Club);
-		Bw.write(" ");
-		Bw.write((int) price);
-		Bw.write("/n");
-		Bw.close();
-		fw.close();
+		 LinkedList<String> l=new LinkedList<String>();
+		 l.add(First_Name);
+		 l.add(Last_Name);
+		 l.add(Nationality);
+		 l.add(Position);
+		 l.add(Club);
+		 l.add(Price);
+		 
+		 String new_player = l.stream().collect(Collectors.joining(" "));
+	     Path path=Paths.get("D:\\Players_information.txt");
+	     Files.write(path,  new_player.getBytes(), StandardOpenOption.APPEND);
+	     Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
 	}
+	//----------------------------------------------------------------------------
+	public void Retrieve(String Last_Name) throws IOException
+	{
+		 BufferedReader read = new BufferedReader(new FileReader ("D:\\Players_information.txt"));
+		 String q = read.readLine();
+		 LinkedList<String> listword=new LinkedList<String>();
+		 LinkedList<String> listLines=new LinkedList<String>();
+		 listLines.add(q);
+		 
+		while(q !=null)
+		{
+			String[] ta = q.split(" ");
+			String ln = ta[1];
+			listword.add(ln);
+			q = read.readLine();
+		}
+			for(int i = 0; i<listword.size(); i++)
+			{
+				if(Last_Name.equals(listword.get(i)))
+				{
+					System.out.println(listLines.get(i));
+				}
+			}
+		}
 }
