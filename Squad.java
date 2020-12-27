@@ -36,7 +36,7 @@ public class Squad
 //-------------------------------------------------------------------
 	public void create_file (String fi) throws IOException
 	{
-			File new_squad = new File("D:\\new_squad.txt");
+			File new_squad = new File("D:\\level 3\\Software architecture\\sprint2\\Sprint_two\\new_squad.txt");
 		    boolean result = true;  
 	     	result = new_squad.createNewFile();
 
@@ -68,7 +68,7 @@ public class Squad
 				 if(counter_Goalkeeper<2)
 				 {
 				  counter_Goalkeeper++;
-				  Path path=Paths.get("D:\\new_squad.txt");
+				  Path path=Paths.get("D:\\level 3\\Software architecture\\sprint2\\Sprint_two\\new_squad.txt");
 			   	  Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
 				  Files.write(path,  s.getBytes(), StandardOpenOption.APPEND);
 			      }
@@ -82,7 +82,7 @@ public class Squad
 				 if(counter_Defender<5)
 				 {
 				  counter_Defender++;
-				  Path path=Paths.get("D:\\new_squad.txt");
+				  Path path=Paths.get("D:\\level 3\\Software architecture\\sprint2\\Sprint_two\\new_squad.txt");
 			   	  Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
 				  Files.write(path,  s.getBytes(), StandardOpenOption.APPEND);
 				 }
@@ -97,7 +97,7 @@ public class Squad
 		   		 if(counter_Midfielder<5 )
 		   		 {
 				  counter_Midfielder++;
-				  Path path=Paths.get("D:\\new_squad.txt");
+				  Path path=Paths.get("D:\\level 3\\Software architecture\\sprint2\\Sprint_two\\new_squad.txt");
 			   	  Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
 				  Files.write(path,  s.getBytes(), StandardOpenOption.APPEND);
 			     }
@@ -112,7 +112,7 @@ public class Squad
 				  if(counter_Forward<3 )
 				  {
 				  counter_Forward++;
-				  Path path=Paths.get("D:\\new_squad.txt");
+				  Path path=Paths.get("D:\\level 3\\Software architecture\\sprint2\\Sprint_two\\new_squad.txt");
 			   	  Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
 				  Files.write(path,  s.getBytes(), StandardOpenOption.APPEND);
 			      }
@@ -134,3 +134,11 @@ public class Squad
 	//---------------------------------------------------------------
 	
 	}
+
+	
+	
+	
+	
+	
+	
+
