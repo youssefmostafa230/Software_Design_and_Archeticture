@@ -33,14 +33,23 @@ public class Player
 		 l.add(Price);
 		 
 		 String new_player = l.stream().collect(Collectors.joining(" "));
-	     Path path=Paths.get("D:\\Players_information.txt");
-	     Files.write(path,  new_player.getBytes(), StandardOpenOption.APPEND);
-	     Files.write(path,  "\n".getBytes(), StandardOpenOption.APPEND);
+		 File f= new File("Players/../PlayersInformation.txt");
+		 System.out.println(f.getPath());
+		 System.out.println(f.getAbsolutePath());
+		 FileWriter fw=new FileWriter(f, true);
+		 fw.write(new_player+"\n");
+		 fw.close();
+	     //Path path=Paths.get("Players_information.txt");
+	     //Files.write(f,  new_player.getBytes(), StandardOpenOption.APPEND);
+	     //Files.write(f,  "\n".getBytes(), StandardOpenOption.APPEND);
 	}
 	//----------------------------------------------------------------------------
 	public void Retrieve(String Last_Name) throws IOException
 	{
-		 BufferedReader read = new BufferedReader(new FileReader ("D:\\Players_information.txt"));
+		 File f= new File("Players/../PlayersInformation.txt");
+		 System.out.println(f.getPath());
+		 System.out.println(f.getAbsolutePath());
+		 BufferedReader read = new BufferedReader(new FileReader ("Players/../PlayersInformation.txt"));
 		 String q = read.readLine();
 		 LinkedList<String> listword=new LinkedList<String>();
 		 LinkedList<String> listLines=new LinkedList<String>();
