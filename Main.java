@@ -44,6 +44,8 @@ public class Main
 		System.out.println("3.Create Squad");
 		System.out.println("4.add new squad");
 		System.out.println("5.add new event");
+		//System.out.println("5.check the score for a giver gameweek:");
+
 
 		Scanner options = new Scanner(System.in);
 		String chosen = options.nextLine();
@@ -169,9 +171,10 @@ public class Main
 	       Scanner l1=new Scanner(System.in);
 	       String LastName =l1.nextLine();
 	       
-	       //Scanner gw1=new Scanner(System.in);
-	       //String gameweek =gw1.nextLine();
-	       E.add_new_event(action, LastName);
+	       System.out.print("Enter the gameweek that you wish to update: ");
+	       Scanner gw1=new Scanner(System.in);
+	       String gameweek =gw1.nextLine();
+	       E.add_new_event(action, LastName, gameweek);
 	    
 	       
 		}
