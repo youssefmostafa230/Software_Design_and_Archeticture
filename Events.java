@@ -29,7 +29,7 @@ public class Events {
 	String Game_Week_Points;
 	public static int totalp=0;
 	public static int weekp=0;
-	String[] arr_ofgameweeks=new String[38];
+	public static Integer arr_ofgameweeks[]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	
 	/*public void Players_array() throws IOException
 	{
@@ -80,14 +80,15 @@ public class Events {
 	
 	public String action;
 	public String LastName;
-	//public String gameweek;
-	public void add_new_event (String action, String LastName /*String gameweek*/) throws IOException
+	public String gameweek;
+	public void add_new_event (String action, String LastName, String gameweek) throws IOException
 	{
 		//String ln ="";
 		//InputStream f2 = null;
 		File f= new File("Players/../PlayersInformation.txt");
 		System.out.println(f.getPath());
 		System.out.println(f.getAbsolutePath());
+		int games = Integer.parseInt(gameweek);
 		//BufferedReader br = new BufferedReader(new FileReader ("Players/../PlayersInformation.txt"));
 		//String q = read.readLine();
 		LinkedList<String> listword=new LinkedList<String>();
@@ -97,19 +98,28 @@ public class Events {
 		//String ln = ta[1];
 		Scanner scanner = new Scanner(new File("Players/../PlayersInformation.txt"));
 		StringBuilder resultStringBuilder = new StringBuilder();
-	    BufferedReader br= new BufferedReader(new FileReader(f));
-			   
-		        String line;
-		        String[] Divide = new String[8];
-		        if ((line = br.readLine()) != null) 
-		        {
-		            resultStringBuilder.append(line).append("\n");
-		            Divide = line.split(" ");
-		            String Last_Name= Divide[1];
-		            String WeekPoints= Divide[6];
-		            listword.add(Last_Name);
-		            listLines.add(line);
-		        }
+	    BufferedReader br= new BufferedReader(new FileReader(f));	   
+		String line;
+		line=br.readLine();
+		String[] Divide = new String[45];
+		while (line != null) 
+		{
+		    resultStringBuilder.append(line).append("\n");
+			Divide = line.split(" ");
+		    String Last_Name= Divide[1];
+		    String WeekPoints= Divide[6];
+		    listword.add(Last_Name);
+		    for(int p=0; p<Divide.length; p++)
+		    {	
+		        listLines.add(Divide[p]);
+		        line=br.readLine();
+		    }
+		            
+		}
+		        //listLines.add(line);
+		        //line=br.readLine();
+	            //System.out.println(line);
+	            
 			   
 		
 
@@ -117,7 +127,6 @@ public class Events {
 		{
 			if(LastName.equals(Divide[1]))
 			{
-			 
 		     if (action.equals("1"))
 		     {
 		    	  weekp++;
@@ -241,10 +250,14 @@ public class Events {
 		    	 weekp-=2;
 		    	 totalp+=weekp;
 		     }
-		     File fileToBeModified = new File("Players/../PlayersInformation.txt");
+		     //by8ayar el weekpoints w el total points:
+		     
+		      File fileToBeModified = new File("Players/../PlayersInformation.txt");
 	 		  String oldContent="";
 	 		  BufferedReader B_reader = new BufferedReader(new FileReader(fileToBeModified));
 	 		  String line1 = B_reader.readLine();
+	 		  //String line2 = B_reader.readLine();
+	 		  LinkedList<String> line2 = new LinkedList<String>();
 	 		  String points = String.valueOf(weekp);
 	 		  String total = String.valueOf(totalp);
 	 		  while (line1 != null)
@@ -252,10 +265,25 @@ public class Events {
 	 		        oldContent = oldContent + line1 + System.lineSeparator();
 	 		        line1 = B_reader.readLine();
 	 		 	}
-	 		  String Joining = String.join(" ", Divide[0], Divide[1], Divide[2], Divide[3], Divide[4], Divide[5], points, total);
+	 		 //while (line2 != null)
+	 		 	//{
+	 		       // oldContent = oldContent + line2 + System.lineSeparator();
+	 		        //line2 = B_reader.readLine();
+	 		 	//}
+	 		  //LinkedList<String> liner = new LinkedList<String>();
+	 		  //liner.add(listLines.get(i));
+	 		// String[] zeft = listLines.get(i).split(" ");
+	 		  //System.out.println(liner);
+	 		  String Joining = String.join(" ",listLines);
+	 		  System.out.println(Joining);
 	 		  System.out.print("\n");
-	 		  //System.out.println(Joining +"Sha8al");
-	 		  String newContent = oldContent.replaceAll(line, Joining);
+	 		  int index= 6+ (games-1);
+	 		  //int index1= 45;
+	 		  listLines.set(index, points);
+	 		  //listLines.set(index1, total);
+	 		  String newjoin = String.join(" ",listLines);
+	 		  System.out.println(newjoin);
+	 		  String newContent = oldContent.replaceAll(Joining, newjoin);
 	 		  FileWriter writer = new FileWriter(fileToBeModified);
 	 		  writer.write(newContent);
 	 		  B_reader.close();

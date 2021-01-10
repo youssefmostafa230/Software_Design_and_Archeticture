@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,6 +23,7 @@ public class Player
 	String Club;
 	String price;
 	public int gameweekpoints=0;
+	Integer Gameweekpoints[]= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	public int totalpoints=0;
 	
 	public void Add_new_player(String First_Name, String Last_Name, String Nationality, String Position, String Club, String Price) throws IOException
@@ -40,7 +42,18 @@ public class Player
 		 System.out.println(f.getPath());
 		 System.out.println(f.getAbsolutePath());
 		 FileWriter fw=new FileWriter(f, true);
-		 fw.write(new_player+" "+gameweekpoints+" "+totalpoints+"\n");
+		 //FileWriter fr = new FileWriter("PlayersInformation.txt");
+         //BufferedWriter br = new BufferedWriter(fr);
+         //PrintWriter out = new PrintWriter(br);
+         fw.write(new_player+" ");
+		 for(int i=0;i<Gameweekpoints.length;i++)
+		 {
+			 if(Gameweekpoints[i]!=null)
+			 {
+				 fw.write(Gameweekpoints[i]+" ");
+			 }
+		 }
+		 fw.write(totalpoints+"\n");
 		 fw.close();
 	     //Path path=Paths.get("Players_information.txt");
 	     //Files.write(f,  new_player.getBytes(), StandardOpenOption.APPEND);
