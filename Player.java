@@ -21,6 +21,8 @@ public class Player
 	String Position;
 	String Club;
 	String price;
+	public int gameweekpoints=0;
+	public int totalpoints=0;
 	
 	public void Add_new_player(String First_Name, String Last_Name, String Nationality, String Position, String Club, String Price) throws IOException
 	{
@@ -31,13 +33,14 @@ public class Player
 		 l.add(Position);
 		 l.add(Club);
 		 l.add(Price);
+		 //l.add(gameweek);
 		 
 		 String new_player = l.stream().collect(Collectors.joining(" "));
 		 File f= new File("Players/../PlayersInformation.txt");
 		 System.out.println(f.getPath());
 		 System.out.println(f.getAbsolutePath());
 		 FileWriter fw=new FileWriter(f, true);
-		 fw.write(new_player+"\n");
+		 fw.write(new_player+" "+gameweekpoints+" "+totalpoints+"\n");
 		 fw.close();
 	     //Path path=Paths.get("Players_information.txt");
 	     //Files.write(f,  new_player.getBytes(), StandardOpenOption.APPEND);
@@ -53,13 +56,14 @@ public class Player
 		 String q = read.readLine();
 		 LinkedList<String> listword=new LinkedList<String>();
 		 LinkedList<String> listLines=new LinkedList<String>();
-		 listLines.add(q);
+		 
 		 
 		while(q !=null)
 		{
 			String[] ta = q.split(" ");
 			String ln = ta[1];
 			listword.add(ln);
+			listLines.add(q);
 			q = read.readLine();
 		}
 			for(int i = 0; i<listword.size(); i++)
